@@ -1,0 +1,33 @@
+{
+  "name": "nebulanotes-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/genabi.mjs && next dev",
+    "dev:mock": "node scripts/check-node.mjs && node scripts/genabi.mjs && next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@fhevm/mock-utils": "^0.1.0",
+    "@tanstack/react-query": "^5.90.5",
+    "@wagmi/core": "^2.22.1",
+    "@zama-fhe/relayer-sdk": "^0.2.0",
+    "next": "16.0.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "viem": "^2.38.5",
+    "wagmi": "^2.19.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

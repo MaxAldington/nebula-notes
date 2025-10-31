@@ -1,0 +1,82 @@
+/* Design Tokens CSS Variables - Generated from design-tokens.ts */
+/* NebulaNotes on localhost with NebulaNotes.sol - Seed: based on hash */
+
+/* Light Theme Colors */
+:root {
+  --color-primary: #3B82F6;
+  --color-secondary: #06B6D4;
+  --color-accent: #14B8A6;
+  --color-background: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-text: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-border: #E2E8F0;
+}
+
+/* Dark Theme Colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #3B82F6;
+    --color-secondary: #06B6D4;
+    --color-accent: #14B8A6;
+    --color-background: #0F172A;
+    --color-surface: #1E293B;
+    --color-text: #F8FAFC;
+    --color-text-secondary: #94A3B8;
+    --color-border: #334155;
+    --color-surface-dark: #1E293B;
+  }
+}
+
+/* Typography */
+:root {
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+  --font-scale: 1.25;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.563rem;
+  --font-size-2xl: 1.953rem;
+  --font-size-3xl: 2.441rem;
+}
+
+/* Spacing */
+:root {
+  --spacing-unit: 8px;
+}
+
+/* Border Radius */
+:root {
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+}
+
+/* Shadows */
+:root {
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+}
+
+/* Transitions */
+:root {
+  --transition-duration: 200ms;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Layout */
+:root {
+  --layout-type: 'Sidebar';
+}
+
+/* Component Styles */
+:root {
+  --component-border-radius: 8px;
+  --component-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  --component-border-width: 1px;
+}
+
