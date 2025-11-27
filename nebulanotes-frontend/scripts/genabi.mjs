@@ -20,7 +20,22 @@ const dirname = path.basename(dir);
 const line =
   "\n===================================================================\n";
 
+// Check if we're in a CI/CD environment (like Vercel) where deployment files might not exist
+const isCI = process.env.CI || process.env.VERCEL || process.env.VERCEL_ENV;
+
 if (!fs.existsSync(dir)) {
+  if (isCI) {
+    console.warn(
+      `${line}Warning: Unable to locate ${rel} in CI environment. Using existing ABI files if available.${line}`
+    );
+    // Check if ABI files already exist
+    const abiFile = path.join(outdir, `${CONTRACT_NAME}ABI.ts`);
+    const addressesFile = path.join(outdir, `${CONTRACT_NAME}Addresses.ts`);
+    if (fs.existsSync(abiFile) && fs.existsSync(addressesFile)) {
+      console.log(`Using existing ABI files: ${abiFile}, ${addressesFile}`);
+      process.exit(0);
+    }
+  }
   console.error(
     `${line}Unable to locate ${rel}. Expecting <root>/${dirname}${line}`
   );
@@ -80,10 +95,24 @@ function readDeployment(chainName, chainId, contractName, optional) {
 }
 
 // Auto deployed on Linux/Mac (will fail on windows)
-const deployLocalhost = readDeployment("localhost", 31337, CONTRACT_NAME, false /* optional */);
+// In CI environments, make localhost optional too
+const deployLocalhost = readDeployment("localhost", 31337, CONTRACT_NAME, isCI /* optional in CI */);
 
 // Sepolia is optional
 let deploySepolia = readDeployment("sepolia", 11155111, CONTRACT_NAME, true /* optional */);
+
+// If we're in CI and don't have deployments, try to use existing ABI files
+if (isCI && !deployLocalhost) {
+  const abiFile = path.join(outdir, `${CONTRACT_NAME}ABI.ts`);
+  const addressesFile = path.join(outdir, `${CONTRACT_NAME}Addresses.ts`);
+  if (fs.existsSync(abiFile) && fs.existsSync(addressesFile)) {
+    console.log(`CI environment: Using existing ABI files`);
+    process.exit(0);
+  }
+  console.error(`${line}No deployment files found and no existing ABI files in CI environment.${line}`);
+  process.exit(1);
+}
+
 if (!deploySepolia) {
   deploySepolia = { abi: deployLocalhost.abi, address: "0x0000000000000000000000000000000000000000" };
 }
