@@ -48,6 +48,12 @@ A privacy-preserving notes storage dApp built on **FHEVM (Fully Homomorphic Encr
 └── README.md
 ```
 
+## 🌐 Live Demo
+
+**Production Deployment**: https://nebulanotes-frontend-2on6spkwi-galaxys-projects-639e1fd2.vercel.app
+
+The frontend is deployed on Vercel and connected to Sepolia testnet. Connect your MetaMask wallet to start using NebulaNotes!
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -98,6 +104,18 @@ npx hardhat deploy --network sepolia
 cd nebulanotes-frontend
 npm run dev
 ```
+
+### Vercel Deployment
+
+The frontend is automatically deployed to Vercel. To deploy manually:
+
+```bash
+cd nebulanotes-frontend
+export VERCEL_TOKEN=<your-token>
+npx vercel --prod
+```
+
+The build process automatically handles ABI generation and uses existing ABI files in CI/CD environments.
 
 ## 🔐 FHEVM Integration
 
